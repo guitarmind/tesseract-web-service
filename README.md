@@ -15,8 +15,8 @@ You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more s
     sudo apt-get install tesseract-ocr
 
 Only English and numbers are supported by default.
-You can download more language packs, such as Simplified/Traditional Chinese from http://code.google.com/p/tesseract-ocr/downloads/list. 
-The packs should be decompressed and put under /usr/share/tesseract-ocr/tessdata:
+You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list. 
+The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessdata**'.
 
     ls /usr/share/tesseract-ocr/tessdata
     
@@ -39,7 +39,7 @@ Then put all .py file to /tmp/ocr
 
     cp ~/Share/tesseract-web-service/* /tmp/ocr
 
-The default listening port is 1688. Change it in tesseractserver.py to yours.
+The default listening port is **1688** on **localhost**. Change it in tesseractserver.py to yours.
 Please make sure that the firewall is opened for lisenting port.
 
 Start tesseract-web-service by:
