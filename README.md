@@ -104,7 +104,7 @@ Example POST data in JSON:
       }
     }
     
-Then you shall got a JSON response similar to the following:
+Then you shall get a JSON response similar to the following:
 
     {
       'data': {
