@@ -4,8 +4,8 @@ tesseract-web-service
 An implementation of RESTful web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
 
 The HTTP server is implemented using tornado.
-Currently only accept uploading files or image url with .png extension.
-You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to support more formats.
+Currently all uploading files or image urls are stored as temp .png files for processing.
+You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more sophisticate formats.
 
 
 ####tsseract Installation on Ubuntu 12.04 LTS
@@ -119,15 +119,5 @@ Then you shall got a JSON response similar to the following:
 Author: Mark Peng (markpeng.ntu@gmail.com)
 
 All codes are under [the Apache 2.0 license](LICENSE).
-
-
-
-
-
-
-    
-
-
-
 
 
