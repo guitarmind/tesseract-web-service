@@ -5,7 +5,7 @@ An implementation of RESTful web service for tesseract-OCR, based on http://wolf
 
 The HTTP server is implemented using tornado.
 Currently only accept uploading files or image url with .png extension.
-You can modify **tesseractserver.py** and **tesseractapi.py** to support more formats.
+You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to support more formats.
 
 
 
@@ -82,7 +82,24 @@ If you would like the call "Fetch Image From URL" API with POST, please send a H
     POST data payload: imageUrl = 'http://xxxxxxx'
 
 
-You need to provide imageUrl argument in the POST data to get response.
+If you send POST data by JSON, you need to provide '**url**' key, with the target image url as its value.
+
+Example POST data in JSON:
+
+    {
+      'data': {
+          'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png'
+      }
+    }
+    
+Then you shall got a JSON response similar to the following:
+
+    {
+      'data': {
+          'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png',
+          'result': '2158.00'
+      }
+    }
 
 
 ####Copyright and License
