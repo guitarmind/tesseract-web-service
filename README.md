@@ -7,7 +7,7 @@ The HTTP server is implemented using tornado.
 Currently only accept uploading .png files or image url with .png extension.
 
 
-####tsseract Installation on Ubuntu 12.04
+####tsseract Installation on Ubuntu 12.04 LTS
 
     sudo apt-get install python-tornado
     sudo apt-get install python-imaging
@@ -82,7 +82,7 @@ If you would like the call "Fetch Image From URL" API with POST, please send a H
 You need to provide imageUrl argument in the POST data to get response.
 
 
-####Copyright and license
+####Copyright and License
 
 Author: Mark Peng (markpeng.ntu@gmail.com)
 
