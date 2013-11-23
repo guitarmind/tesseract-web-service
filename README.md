@@ -8,13 +8,25 @@ Currently only accept uploading files or image url with .png extension.
 You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to support more formats.
 
 
-
-
 ####tsseract Installation on Ubuntu 12.04 LTS
 
     sudo apt-get install python-tornado
     sudo apt-get install python-imaging
     sudo apt-get install tesseract-ocr
+
+Only English and numbers are supported by default.
+You can download more language packs, such as Simplified/Traditional Chinese from http://code.google.com/p/tesseract-ocr/downloads/list. 
+The packs should be decompressed and put under /usr/share/tesseract-ocr/tessdata:
+
+    ls /usr/share/tesseract-ocr/tessdata
+    
+    configs           eng.cube.params        eng.traineddata.__tmp__
+    eng.cube.bigrams  eng.cube.size          equ.traineddata
+    eng.cube.fold     eng.cube.word-freq     osd.traineddata
+    eng.cube.lm       eng.tesseract_cube.nn  tessconfigs
+    eng.cube.nn       eng.traineddata
+
+
 
 
 ####How to start tesseract-web-service
@@ -53,7 +65,7 @@ Type the following command to check the options.
 
 For example:
 
-    python /tmp/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png"
+    python /tmp/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
 
 You should provide the API url and image source url to make it work.
 
