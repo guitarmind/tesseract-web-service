@@ -1,9 +1,99 @@
 tesseract-web-service
 =====================
 
-An implementation of web service for tesseract-OCR
+An implementation of web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
 
-Based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
-
+The HTTP server is implemented using tornado.
 Currently only accept uploading .png files or image url with .png extension.
+
+
+####tsseract Installation on Ubuntu 12.04
+
+    sudo apt-get install python-tornado
+    sudo apt-get install python-imaging
+    sudo apt-get install tesseract-ocr
+
+
+####How to start tesseract-web-service
+Create two folders to keep temp files
+
+    mkdir /tmp/ocr
+    mkdir /tmp/ocr/static
+
+Then put all .py file to /tmp/ocr
+
+    cp ~/Share/tesseract-web-service/* /tmp/ocr
+
+The default listening port is 1688. Change it in tesseractserver.py to yours.
+Please make sure that the firewall is opened for lisenting port.
+
+Start tesseract-web-service by:
+
+    python /tmp/ocr/tesseractserver.py 
+    
+####How to call API by tesseract client
+tesseractclient.py is an client for calling API.
+
+Type the following command to check the options.
+
+    python /tmp/ocr/tesseractclient.py --help
+    
+    Usage: tesseractclient.py [options]
+
+    Options:
+      -h, --help            show this help message and exit
+      -a APIURL, --api-url=APIURL
+                            the URL of RESTful tesseract web service
+      -i IMAGEURL, --image-url=IMAGEURL
+                            the URL of image to do OCR
+
+
+For example:
+
+    python /tmp/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png"
+
+You should provide the API url and image source url to make it work.
+
+####How to call API by GET/POST request
+The web service provides two HTTP GET pages for testing the API:
+
+    Upload Image File: http://localhost:1688/upload
+    Fetch Image From URL: http://localhost:1688/fetchurl
+
+The results are returned in JSON format with ORC result strings.
+
+
+If you would like the call "Fetch Image From URL" API with POST, please send a HTTP request header similar to the following:
+
+    Connection: keep-alive
+    Content-Length: 214
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+    Origin: http://localhost:1688
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36
+    Content-Type: multipart/form-data; boundary=----WebKitFormBoundarylFMK6PAyVCzNCDAr
+    Referer: http://localhost:1688/fetchurl
+    Accept-Encoding: gzip,deflate,sdch
+    Accept-Language: zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4d license
+    
+    .....
+    POST data payload: imageUrl = 'http://xxxxxxx'
+
+
+You need to provide imageUrl argument in the POST data to get response.
+
+
+####Copyright and license
+
+All codes are under [the Apache 2.0 license](LICENSE).
+
+
+
+
+
+
+    
+
+
+
+
 
