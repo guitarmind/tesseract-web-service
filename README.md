@@ -80,6 +80,8 @@ The results are returned in JSON format with ORC result strings.
 
 If you would like the call "Fetch Image From URL" API with POST, please send a HTTP request header similar to the following:
 
+    POST /fetchurl HTTP/1.1
+    Host: localhost:1688
     Connection: keep-alive
     Content-Length: 214
     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
