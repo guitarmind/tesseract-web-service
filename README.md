@@ -1,7 +1,7 @@
 tesseract-web-service
 =====================
 
-An implementation of web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
+An implementation of RESTful web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
 
 The HTTP server is implemented using tornado.
 Currently only accept uploading .png files or image url with .png extension.
@@ -31,7 +31,7 @@ Start tesseract-web-service by:
 
     python /tmp/ocr/tesseractserver.py 
     
-####How to call API by tesseract client
+####How to call RESTful API by tesseract client
 tesseractclient.py is an client for calling API.
 
 Type the following command to check the options.
@@ -54,7 +54,7 @@ For example:
 
 You should provide the API url and image source url to make it work.
 
-####How to call API by GET/POST request
+####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
 
     Upload Image File: http://localhost:1688/upload
@@ -83,6 +83,8 @@ You need to provide imageUrl argument in the POST data to get response.
 
 
 ####Copyright and license
+
+Author: Mark Peng (markpeng.ntu@gmail.com)
 
 All codes are under [the Apache 2.0 license](LICENSE).
 
