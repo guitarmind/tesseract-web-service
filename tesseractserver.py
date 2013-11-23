@@ -30,7 +30,7 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # create a unique ID file
         tempname = str(uuid.uuid4()) + ".png"
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
-        tmpFilename = os.path.join(os.path.dirname(__file__), "static", tempname);
+        tmpFilename = os.path.join(os.path.dirname(__file__), "static", tempname)
  
         # do OCR, print result
         result = image_to_string(tmpImg).replace(" ", "")
