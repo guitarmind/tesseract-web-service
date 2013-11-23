@@ -1,4 +1,7 @@
 tesseract-web-service
 =====================
 
-A folked version from https://github.com/ccp0101/tesseract-web-service
+A Web Service for tesseract-OCR
+A modified version from http://(wolfpaulus.com/jounal/android-journal/android-and-ocr/)
+
+Currently only accept uploading .png files or image url with .png extension
