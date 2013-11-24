@@ -14,7 +14,7 @@ You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more s
     sudo apt-get install python-imaging
     sudo apt-get install tesseract-ocr
 
-Only English and numbers are supported by default.
+Only English letters and digits are supported by default.
 You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list. 
 The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessdata**'.
 
