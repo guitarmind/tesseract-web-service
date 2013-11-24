@@ -59,7 +59,7 @@ Please make sure that the firewall is opened for lisenting port.
 
 For example, you can change the port to 8080 by:
 
-    python /opt/ocr/tesseractserver.py 8080
+    python /opt/ocr/tesseractserver.py -p 8080
     
 ####How to call RESTful API by tesseract client
 tesseractclient.py is an client for calling API.
