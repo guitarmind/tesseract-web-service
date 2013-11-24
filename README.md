@@ -108,7 +108,7 @@ Then you shall get a JSON response similar to the following:
     }
 
 ####How to call RESTful API by tesseract client
-tesseractclient.py is an client for calling "Fetch Image From URL" API.
+tesseractclient.py is a client for calling the "Fetch Image From URL" API.
 
 Type the following command to check the options.
 
