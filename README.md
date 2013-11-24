@@ -45,7 +45,15 @@ Start tesseract-web-service by:
 
 Type the following command to check the options.
 
-      
+    python tesseractserver.py -h
+
+    Usage: tesseractserver.py [options]
+
+    Options:
+      -h, --help            show this help message and exit
+      -p PORT, --port=PORT  the listening port of RESTful tesseract web service
+                            (default: 1688)
+                            
 
 The default listening port is **1688**. Change it to yours on startup.
 Please make sure that the firewall is opened for lisenting port.
