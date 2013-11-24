@@ -31,12 +31,21 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # create a unique ID file
         tempname = str(uuid.uuid4()) + ".png"
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
- 
+
+        # force resize to width=150px if the incoming image is too small
+        targetWidth = 150
+        width, height = tmpImg.size
+        if width < targetWidth:
+            ratio = float(targetWidth) / width
+            newHeight = int(height * ratio)
+            tmpImg = tmpImg.resize((targetWidth, newHeight), Image.ANTIALIAS)
+            print "resize image to (" + str(targetWidth) + "," + str(newHeight) + ")"
+
         # do OCR, print result
         result = image_to_string(tmpImg)
-        if("." not in result && " " in result)
+        if "." not in result and " " in result:
             result = image_to_string(tmpImg).replace(" ", ".")
-        else
+        else:
             result = result.replace(" ", "")
         self.write(result)
         self.write("")
@@ -101,12 +110,21 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         # download image from url
         file = cStringIO.StringIO(urllib.urlopen(url).read())
         tmpImg = Image.open(file)
+
+        # force resize to width=150px if the incoming image is too small
+        targetWidth = 150
+        width, height = tmpImg.size
+        if width < targetWidth:
+            ratio = float(targetWidth) / width
+            newHeight = int(height * ratio)
+            tmpImg = tmpImg.resize((targetWidth, newHeight), Image.ANTIALIAS)
+            print "resize image to (" + str(targetWidth) + "," + str(newHeight) + ")"
  
         # do OCR, get result string
         result = image_to_string(tmpImg)
-        if("." not in result && " " in result)
+        if "." not in result and " " in result:
             result = image_to_string(tmpImg).replace(" ", ".")
-        else
+        else:
             result = result.replace(" ", "")
 
         # send response json
