@@ -60,29 +60,6 @@ Please make sure that the firewall is opened for lisenting port.
 For example, you can change the port to 8080 by:
 
     python /opt/ocr/tesseractserver.py -p 8080
-    
-####How to call RESTful API by tesseract client
-tesseractclient.py is an client for calling API.
-
-Type the following command to check the options.
-
-    python /opt/ocr/tesseractclient.py --help
-    
-    Usage: tesseractclient.py [options]
-
-    Options:
-      -h, --help            show this help message and exit
-      -a APIURL, --api-url=APIURL
-                            the URL of RESTful tesseract web service
-      -i IMAGEURL, --image-url=IMAGEURL
-                            the URL of image to do OCR
-
-
-For instance:
-
-    python /opt/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
-
-You should provide the API url and image source url to make it work.
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
@@ -93,7 +70,7 @@ The web service provides two HTTP GET pages for testing the API:
 The results are returned in JSON format with ORC result strings.
 
 
-If you would like the call "Fetch Image From URL" API with POST, please send a HTTP request header similar to the following:
+If you would like to call "Fetch Image From URL" API with POST, please send a HTTP request header similar to the following:
 
     POST /fetchurl HTTP/1.1
     Host: localhost:1688
@@ -130,6 +107,28 @@ Then you shall get a JSON response similar to the following:
       }
     }
 
+####How to call RESTful API by tesseract client
+tesseractclient.py is an client for calling "Fetch Image From URL" API.
+
+Type the following command to check the options.
+
+    python /opt/ocr/tesseractclient.py --help
+    
+    Usage: tesseractclient.py [options]
+
+    Options:
+      -h, --help            show this help message and exit
+      -a APIURL, --api-url=APIURL
+                            the URL of RESTful tesseract web service
+      -i IMAGEURL, --image-url=IMAGEURL
+                            the URL of image to do OCR
+
+
+For instance:
+
+    python /opt/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
+
+You should provide the API url and image source url to make it work.
 
 ####Copyright and License
 
