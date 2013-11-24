@@ -30,28 +30,34 @@ The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessd
 
 
 ####How to start tesseract-web-service
-Create two folders to keep temp files
+Create a folder named '**static**' under current folder (for instance, '**/opt/ocr**') to keep temp files
 
-    mkdir /tmp/ocr
-    mkdir /tmp/ocr/static
+    mkdir /opt/ocr
+    mkdir /opt/ocr/static
 
-Then put all .py file to /tmp/ocr
+Then put all .py files to /opt/ocr
 
-    cp ~/Share/tesseract-web-service/* /tmp/ocr
-
-The default listening port is **1688** on **localhost**. Change it in tesseractserver.py to yours.
-Please make sure that the firewall is opened for lisenting port.
+    cp ~/Share/tesseract-web-service/* /opt/ocr
 
 Start tesseract-web-service by:
 
-    python /tmp/ocr/tesseractserver.py 
+    python /opt/ocr/tesseractserver.py 
+
+Type the following command to check the options.
+
+      
+
+The default listening port is **1688**. Change it to yours on startup.
+Please make sure that the firewall is opened for lisenting port.
+
+    python /opt/ocr/tesseractserver.py 8080
     
 ####How to call RESTful API by tesseract client
 tesseractclient.py is an client for calling API.
 
 Type the following command to check the options.
 
-    python /tmp/ocr/tesseractclient.py --help
+    python /opt/ocr/tesseractclient.py --help
     
     Usage: tesseractclient.py [options]
 
@@ -65,7 +71,7 @@ Type the following command to check the options.
 
 For example:
 
-    python /tmp/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
+    python /opt/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
 
 You should provide the API url and image source url to make it work.
 
@@ -120,6 +126,6 @@ Then you shall get a JSON response similar to the following:
 
 Author: Mark Peng (markpeng.ntu@gmail.com)
 
-All codes are under [the Apache 2.0 license](LICENSE).
+All codes are under the [Apache 2.0 license](LICENSE).
 
 

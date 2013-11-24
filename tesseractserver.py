@@ -2,6 +2,7 @@
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
+import optparse
 import pprint
 import Image
 from tesseractapi import image_to_string
@@ -30,7 +31,6 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # create a unique ID file
         tempname = str(uuid.uuid4()) + ".png"
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
-        tmpFilename = os.path.join(os.path.dirname(__file__), "static", tempname);
  
         # do OCR, print result
         result = image_to_string(tmpImg).replace(" ", "")
@@ -55,9 +55,6 @@ class ImageUrlHandler(tornado.web.RequestHandler):
                             var imageUrl = document.getElementById("imageUrl").value;
                             var resultEle = document.getElementById("result");
 
-
-                            alert('123');
-
                             if(imageUrl !== "") {
                                 $.ajax({
                                        type: "POST",
@@ -76,9 +73,9 @@ class ImageUrlHandler(tornado.web.RequestHandler):
                     });  
                 </script>
                 <body>
-                    <h2>Tesseract Web Service &nbsp;by Mark Peng (markpeng.ntu@gmail.com)</h2>
+                    <h2>Tesseract Web Service</h2>
                     <form name="mainForm" id="mainForm" action="" method="POST" enctype="multipart/form-data">
-                        Target image url: <input type="text" id="imageUrl" name="imageUrl" size="50" />
+                        Target image url: <input type="text" id="imageUrl" name="imageUrl" size="80" />
                         <input id="submitBtn" type="submit" value="Submit" />
                     </form>
                     <div id="result"></div>
@@ -96,9 +93,6 @@ class ImageUrlHandler(tornado.web.RequestHandler):
             # parse received json
             jsonobj = json.loads(self.request.body)
             url = jsonobj['data']['url']
-
-        # temp image folder
-        dir = "/tmp/ocr/static/"
 
         # download image from url
         file = cStringIO.StringIO(urllib.urlopen(url).read())
@@ -122,9 +116,22 @@ application = tornado.web.Application([
     (r"/upload", FileUploadHandler),
     (r"/fetchurl", ImageUrlHandler)
 ], **settings)
+
+def main():
+    parser = optparse.OptionParser()
+    parser.add_option('-p', '--port', dest='port', help='the listening port of RESTful tesseract web service (default: 1688)')
+    (options, args) = parser.parse_args()
+
+
+    port = options.port
+    if not options.port:   # if port is not given, use the default one 
+      port = 1688
+
+    http_server = tornado.httpserver.HTTPServer(application)
+    http_server.listen(port)
+    print "Tesseract Web Service starts at port " + str(port) + "."
+    tornado.ioloop.IOLoop.instance().start()
  
 if __name__ == "__main__":
-    http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(1688)
-    tornado.ioloop.IOLoop.instance().start()
+    main()
 

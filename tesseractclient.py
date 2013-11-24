@@ -36,9 +36,6 @@ def main():
     if not options.imageUrl:   # if imageUrl is not given
       parser.error('image-url not given')
 
-    #apiUrl = "http://localhost:1688/fetchurl";
-    #imageUrl = "http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png"
-
     # call tesseract API
     ocrAPI(options.apiUrl, options.imageUrl)
  
