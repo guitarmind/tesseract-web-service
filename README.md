@@ -5,7 +5,7 @@ An implementation of RESTful web service for tesseract-OCR, based on http://wolf
 
 The HTTP server is implemented using tornado.
 Currently all uploading files or image urls are stored as temp .png files for processing.
-You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more sophisticate formats.
+You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more sophisticated formats.
 
 
 ####tsseract Installation on Ubuntu 12.04 LTS
