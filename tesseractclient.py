@@ -24,6 +24,7 @@ def handle_request(response):
         print "Error: ", response.error
     else:
         print "Got response: " + response.body
+    tornado.ioloop.IOLoop.instance().stop()
 
 def main():
     parser = optparse.OptionParser()
