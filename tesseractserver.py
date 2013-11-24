@@ -33,7 +33,11 @@ class FileUploadHandler(tornado.web.RequestHandler):
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
  
         # do OCR, print result
-        result = image_to_string(tmpImg).replace(" ", "")
+        result = image_to_string(tmpImg)
+        if("." not in result && " " in result)
+            result = image_to_string(tmpImg).replace(" ", ".")
+        else
+            result = result.replace(" ", "")
         self.write(result)
         self.write("")
 
@@ -99,7 +103,11 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         tmpImg = Image.open(file)
  
         # do OCR, get result string
-        result = image_to_string(tmpImg).replace(" ", "")
+        result = image_to_string(tmpImg)
+        if("." not in result && " " in result)
+            result = image_to_string(tmpImg).replace(" ", ".")
+        else
+            result = result.replace(" ", "")
 
         # send response json
         response = { 'result': result, 'url': url }
