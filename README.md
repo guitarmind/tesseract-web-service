@@ -52,11 +52,12 @@ Type the following command to check the options.
     Options:
       -h, --help            show this help message and exit
       -p PORT, --port=PORT  the listening port of RESTful tesseract web service
-                            (default: 1688)
-                            
+                            (default: 1688)                 
 
 The default listening port is **1688**. Change it to yours on startup.
 Please make sure that the firewall is opened for lisenting port.
+
+For example, you can change the port to 8080 by:
 
     python /opt/ocr/tesseractserver.py 8080
     
@@ -77,7 +78,7 @@ Type the following command to check the options.
                             the URL of image to do OCR
 
 
-For example:
+For instance:
 
     python /opt/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
 
