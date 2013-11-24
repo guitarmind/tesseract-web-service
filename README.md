@@ -120,6 +120,6 @@ Then you shall get a JSON response similar to the following:
 
 Author: Mark Peng (markpeng.ntu@gmail.com)
 
-All codes are under [the Apache 2.0 license](LICENSE).
+All codes are under the [Apache 2.0 license](LICENSE).
 
 
