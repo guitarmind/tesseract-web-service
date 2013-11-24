@@ -35,9 +35,10 @@ Create a folder named '**static**' under current folder (for instance, '**/opt/o
     mkdir /opt/ocr
     mkdir /opt/ocr/static
 
-Then put all .py files to /opt/ocr
+Then put all .py files to /opt/ocr and make them executable.
 
     cp ~/Share/tesseract-web-service/* /opt/ocr
+    sudo chmod 755 /opt/ocr/*.py
 
 Start tesseract-web-service by:
 
