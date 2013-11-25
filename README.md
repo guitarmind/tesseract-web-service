@@ -89,7 +89,7 @@ If you would like to call "Fetch Image From URL" API with POST, please send a HT
     POST data payload: imageUrl = 'http://xxxxxxx'
 
 
-If you send POST data by JSON, you need to provide '**url**' key, with the target image url as its value.
+If you send POST data by JSON, you need to provide '**data**' key with **url**' object value, which contains target image url.
 
 Example POST data in JSON:
 
