@@ -133,7 +133,7 @@ You should provide the API url and image source url to make it work.
 
 ####Copyright and License
 
-Author: Mark Peng (markpeng.ntu@gmail.com)
+Author: Mark Peng (markpeng.ntu at gmail)
 
 All codes are under the [Apache 2.0 license](LICENSE).
 
