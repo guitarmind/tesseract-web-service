@@ -64,7 +64,7 @@ class ImageUrlHandler(tornado.web.RequestHandler):
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
                 <script>
                     $(document).ready(function(){
-                        $("input#submitBtn").submit(function() {
+                        $("form#mainForm").submit(function() {
                             var imageUrl = document.getElementById("imageUrl").value;
                             var resultEle = document.getElementById("result");
 
