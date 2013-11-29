@@ -10,8 +10,8 @@ Get result string from tesseract API
 """
 def ocrAPI(apiUrl, imageUrl):
     request = { 'url': imageUrl }
-    jsonstr = { 'data': request }
-    post_data = json.dumps(jsonstr)
+    # jsonstr = { 'data': request }
+    post_data = json.dumps(request)
 
     headers = { 'Content-Type': 'application/json; charset=UTF-8' }
     http_client = tornado.httpclient.AsyncHTTPClient()

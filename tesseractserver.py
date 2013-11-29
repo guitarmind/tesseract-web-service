@@ -105,7 +105,8 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         else:
             # parse received json
             jsonobj = json.loads(self.request.body)
-            url = jsonobj['data']['url']
+            jsonobj['url']
+            # url = jsonobj['data']['url']
 
         # download image from url
         file = cStringIO.StringIO(urllib.urlopen(url).read())
