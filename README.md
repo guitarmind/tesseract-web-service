@@ -6,6 +6,11 @@ An implementation of RESTful web service for tesseract-OCR. The HTTP server is i
 As of tesseract-ocr version 3.02.02, it provides a [C-API](https://code.google.com/p/tesseract-ocr/wiki/APIExample).
 Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No more file I/O is required.
 
+####Support two APIs with GET and POST
+
+    Upload Image File: /upload
+    Fetch Image From URL: /fetchurl
+
 ####tsseract Installation on Ubuntu 12.04 LTS
 
     sudo apt-get install python-tornado
