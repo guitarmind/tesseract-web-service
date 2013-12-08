@@ -95,13 +95,10 @@ class tesseactWrapper:
         # transform data bytes to single dimensional array
         data = tmpImg.getdata()
         copyData = [0] * len(data) * 4
-        # print len(copyData)
         for i in range(len(data)):
             for j in range(len(data[i])):
               cursor = i * 4 + j
-              # print "cursor: " + str(cursor)
               copyData[cursor] = data[i][j]
-              # print "data[" + str(i) + "][" + str(j) + "]=" + str(data[i][j])
 
         # compute stride
         bytesPerLine = minWidth * 4
@@ -110,7 +107,6 @@ class tesseactWrapper:
         arrayLength = newHeight * minWidth * 4
         ubyteArray = (ctypes.c_ubyte * arrayLength)()
         for i in xrange(arrayLength):
-          # print "ubyteArray[" + str(i) + "]=" + str(copyData[i])
           ubyteArray[i] = copyData[i]
 
         # call SetImage  
