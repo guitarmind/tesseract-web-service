@@ -4,8 +4,9 @@ tesseract-web-service
 An implementation of RESTful web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
 
 The HTTP server is implemented using tornado.
-As of tesseract-ocr version 3.02.02, it provides a C-API.
-Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No file I/O is required.
+
+As of tesseract-ocr version 3.02.02, it provides a [C-API](https://code.google.com/p/tesseract-ocr/wiki/APIExample).
+Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No more file I/O is required.
 
 ####tsseract Installation on Ubuntu 12.04 LTS
 
@@ -25,7 +26,9 @@ The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessd
     eng.cube.lm       eng.tesseract_cube.nn  tessconfigs
     eng.cube.nn       eng.traineddata
 
+Be sure the set the parent folder path of language packs in environment variables:
 
+    export TESSDATA_PREFIX=/usr/share/tesseract-ocr/
 
 
 ####How to start tesseract-web-service
@@ -41,7 +44,7 @@ Then put all .py files to /opt/ocr and make them executable.
 
 Start tesseract-web-service by:
 
-    python /opt/ocr/tesseractserver.py 
+    python tesseractserver.py -b "/home/markpeng/local/lib" -d "/usr/share/tesseract-ocr/"
 
 Type the following command to check the options.
 
@@ -51,15 +54,22 @@ Type the following command to check the options.
 
     Options:
       -h, --help            show this help message and exit
-      -p PORT, --port=PORT  the listening port of RESTful tesseract web service
-                            (default: 1688)                 
+      -p PORT, --port=PORT  the listening port of RESTful tesseract web service.
+                            (default: 1688)
+      -l LANG, --lang=LANG  the targe language. (defaut: eng
+      -b LIBPATH, --lib-path=LIBPATH
+                            the absolute path of tesseract library.
+      -d TESSDATA, --tessdata-folder=TESSDATA
+                            the absolute path of tessdata folder containing
+                            language packs.
+             
 
 The default listening port is **1688**. Change it to yours on startup.
 Please make sure that the firewall is opened for lisenting port.
 
 For example, you can change the port to 8080 by:
 
-    python /opt/ocr/tesseractserver.py -p 8080
+    python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/usr/share/tesseract-ocr/"
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
