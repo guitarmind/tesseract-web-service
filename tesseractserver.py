@@ -110,7 +110,6 @@ class ImageUrlHandler(tornado.web.RequestHandler):
             # parse received json
             jsonobj = json.loads(self.request.body)
             jsonobj['url']
-            # url = jsonobj['data']['url']
 
         # force resize to width=150px if the incoming image is too small for better precision
         minWidth = 150;
