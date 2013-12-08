@@ -4,9 +4,8 @@ tesseract-web-service
 An implementation of RESTful web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
 
 The HTTP server is implemented using tornado.
-Currently all uploading files or image urls are stored as temp .png files for processing.
-You can modify ***tesseractserver.py*** and ***tesseractapi.py*** to give more sophisticated formats.
-
+As of tesseract-ocr version 3.02.02, it provides a C-API.
+Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No file I/O is required.
 
 ####tsseract Installation on Ubuntu 12.04 LTS
 

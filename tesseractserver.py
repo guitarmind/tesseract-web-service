@@ -14,6 +14,14 @@ import uuid
 import urllib, cStringIO
 import json
 
+# C API wrapper
+from tesseractcapi import tesseactWrapper
+
+# global variables
+lang = "eng"
+libpath = ""
+tessdata = ""
+
 """
 Handles the GET/POST of image files to OCR result string.
 """
@@ -31,7 +39,7 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # create a unique ID file
         tempname = str(uuid.uuid4()) + ".png"
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
-
+        
         # force resize to width=150px if the incoming image is too small
         targetWidth = 150
         width, height = tmpImg.size
@@ -44,11 +52,12 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # do OCR, print result
         result = image_to_string(tmpImg)
         if "." not in result and " " in result:
-            result = image_to_string(tmpImg).replace(" ", ".")
+            result = result.replace(" ", ".")
         else:
             result = result.replace(" ", "")
         self.write(result)
         self.write("")
+
 
 """
 Handles the GET/POST of image url to OCR result string.
@@ -107,23 +116,14 @@ class ImageUrlHandler(tornado.web.RequestHandler):
             jsonobj = json.loads(self.request.body)
             url = jsonobj['data']['url']
 
-        # download image from url
-        file = cStringIO.StringIO(urllib.urlopen(url).read())
-        tmpImg = Image.open(file)
-
-        # force resize to width=150px if the incoming image is too small
-        targetWidth = 150
-        width, height = tmpImg.size
-        if width < targetWidth:
-            ratio = float(targetWidth) / width
-            newHeight = int(height * ratio)
-            tmpImg = tmpImg.resize((targetWidth, newHeight), Image.ANTIALIAS)
-            print "resize image to (" + str(targetWidth) + "," + str(newHeight) + ")"
+        # force resize to width=150px if the incoming image is too small for better precision
+        minWidth = 150;
  
         # do OCR, get result string
-        result = image_to_string(tmpImg)
+        wrapper = tesseactWrapper(lang, libpath, tessdata)
+        result = wrapper.imageUrlToString(url, minWidth)
         if "." not in result and " " in result:
-            result = image_to_string(tmpImg).replace(" ", ".")
+            result = result.replace(" ", ".")
         else:
             result = result.replace(" ", "")
 
@@ -145,13 +145,30 @@ application = tornado.web.Application([
 
 def main():
     parser = optparse.OptionParser()
-    parser.add_option('-p', '--port', dest='port', help='the listening port of RESTful tesseract web service (default: 1688)')
+    parser.add_option('-p', '--port', dest='port', help='the listening port of RESTful tesseract web service. (default: 1688)')
+    parser.add_option('-l', '--lang', dest='lang', help='the targe language. (defaut: eng')
+    parser.add_option('-b', '--lib-path', dest='libPath', help='the absolute path of tesseract library.')
+    parser.add_option('-d', '--tessdata-folder', dest='tessdata', help='the absolute path of tessdata folder containing language packs.')
     (options, args) = parser.parse_args()
 
+    global lang
+    global libpath
+    global tessdata
+
+    if options.lang:   # if lang is given
+        lang = options.lang
+    if not options.libPath:   # if libPath is not given
+        parser.error('lib-path not given')
+    else:
+        libpath = options.libPath
+    if not options.tessdata:   # if tessdata is not given
+        parser.error('tessdata not given')
+    else:
+        tessdata = options.tessdata
 
     port = options.port
     if not options.port:   # if port is not given, use the default one 
-      port = 1688
+        port = 1688
 
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(port)

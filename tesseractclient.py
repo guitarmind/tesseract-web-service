@@ -28,8 +28,8 @@ def handle_request(response):
 
 def main():
     parser = optparse.OptionParser()
-    parser.add_option('-a', '--api-url', dest='apiUrl', help='the URL of RESTful tesseract web service')
-    parser.add_option('-i', '--image-url', dest='imageUrl', help='the URL of image to do OCR')
+    parser.add_option('-a', '--api-url', dest='apiUrl', help='the URL of RESTful tesseract web service.')
+    parser.add_option('-i', '--image-url', dest='imageUrl', help='the URL of image to do OCR.')
     (options, args) = parser.parse_args()
 
     if not options.apiUrl:   # if apiUrl is not given
