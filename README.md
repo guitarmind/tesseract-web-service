@@ -29,7 +29,7 @@ The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessd
     eng.cube.lm       eng.tesseract_cube.nn  tessconfigs
     eng.cube.nn       eng.traineddata
 
-Be sure the set the parent folder path of language packs in environment variables:
+Be sure to set the parent folder path of language packs in environment variables:
 
     export TESSDATA_PREFIX=/usr/share/tesseract-ocr/
 
