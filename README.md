@@ -13,6 +13,12 @@ Now while calling the "Fetch Image From URL" API, all operations are done in mem
 
 ####tsseract Installation on Ubuntu 12.04 LTS
 
+Python Requirement
+
+    version >= 2.5
+
+Install tornado and PIL image library by apt-get.
+
     sudo apt-get install python-tornado
     sudo apt-get install python-imaging
     
