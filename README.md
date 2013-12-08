@@ -11,7 +11,7 @@ Now while calling the "Fetch Image From URL" API, all operations are done in mem
     Upload Image File: /upload
     Fetch Image From URL: /fetchurl
 
-####tsseract Installation on Ubuntu 12.04 LTS
+####Tesseract Installation on Ubuntu 12.04 LTS
 
 Python Requirement
 
