@@ -88,24 +88,21 @@ If you would like to call "Fetch Image From URL" API with POST, please send a HT
     POST data payload: imageUrl = 'http://xxxxxxx'
 
 
-If you send POST data by JSON, you need to provide '**url**' key, with the target image url as its value.
+If you send POST data by JSON, you need to provide a '**url**' key, which contains target image url.
 
 Example POST data in JSON:
 
-    {
-      'data': {
-          'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png'
-      }
+    data: {
+        'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png'
     }
     
 Then you shall get a JSON response similar to the following:
 
-    {
-      'data': {
-          'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png',
-          'result': '2158.00'
-      }
+    data: {
+        'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png',
+        'result': '2158.00'
     }
+
 
 ####How to call RESTful API by tesseract client
 tesseractclient.py is a client for calling the "Fetch Image From URL" API.
@@ -132,7 +129,7 @@ You should provide the API url and image source url to make it work.
 
 ####Copyright and License
 
-Author: Mark Peng (markpeng.ntu@gmail.com)
+Author: Mark Peng (markpeng.ntu at gmail)
 
 All codes are under the [Apache 2.0 license](LICENSE).
 
