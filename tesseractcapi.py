@@ -69,7 +69,8 @@ class TesseactWrapper:
           exit(3)
 
     def imageFileToString(self, filePath):
-        # Runing tesseract-ocr
+        
+        # Running tesseract-ocr
         text_out = self.tesseract.TessBaseAPIProcessPages(self.api, filePath, None, 0)
         result_text = ctypes.string_at(text_out)
         print 'Result: ', result_text
