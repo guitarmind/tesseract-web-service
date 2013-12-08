@@ -40,7 +40,7 @@ class FileUploadHandler(tornado.web.RequestHandler):
         tempname = str(uuid.uuid4()) + ".png"
         tmpImg = Image.open(StringIO.StringIO(self.request.files.items()[0][1][0]['body']))
         
-        # force resize to width=150px if the incoming image is too small
+        # force resize to width=150px if the incoming image is too small for better precision
         targetWidth = 150
         width, height = tmpImg.size
         if width < targetWidth:
