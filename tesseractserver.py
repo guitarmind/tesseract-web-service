@@ -59,7 +59,6 @@ class FileUploadHandler(tornado.web.RequestHandler):
         # do OCR, print result
         wrapper = TesseactWrapper(lang, libpath, tessdata)
         result = wrapper.imageFileToString(tmpFilePath)
-        # result = image_to_string(tmpImg)
 
         # remove tmp image file
         self.cleanup(tmpFilePath)
