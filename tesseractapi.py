@@ -1,5 +1,9 @@
 #!/usr/bin/env python
- 
+
+# 
+# Reference: http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
+#
+
 tesseract_cmd = 'tesseract'
  
 import Image

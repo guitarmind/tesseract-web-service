@@ -1,9 +1,7 @@
 tesseract-web-service
 =====================
 
-An implementation of RESTful web service for tesseract-OCR, based on http://wolfpaulus.com/jounal/android-journal/android-and-ocr/
-
-The HTTP server is implemented using tornado.
+An implementation of RESTful web service for tesseract-OCR. The HTTP server is implemented using tornado.
 
 As of tesseract-ocr version 3.02.02, it provides a [C-API](https://code.google.com/p/tesseract-ocr/wiki/APIExample).
 Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No more file I/O is required.
