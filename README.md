@@ -15,13 +15,26 @@ Now while calling the "Fetch Image From URL" API, all operations are done in mem
 
     sudo apt-get install python-tornado
     sudo apt-get install python-imaging
-    sudo apt-get install tesseract-ocr
+    
+You need to compile and install the latest version (3.02.02) of tesseract-ocr manually to support C API. More detail can be found at [this wiki](https://code.google.com/p/tesseract-ocr/wiki/Compiling). Here is an example on Ubuntu 12.04 LTS:
+
+    mkdir ~/temp
+    mkdir ~/temp/tessdata
+    cd ~/temp
+    wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
+    tar xvf tesseract-ocr-3.02.02.tar.gz
+    cd tesseract-ocr
+    sudo ./autogen.sh
+    mkdir ~/local
+    sudo ./configure --prefix=$HOME/local/
+    sudo make
+    sudo make install
 
 Only English letters and digits are supported by default.
 You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list. 
-The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessdata**'.
+Decompress and put the packs under '**~/local/share/tessdata**' or other locations you like.
 
-    ls /usr/share/tesseract-ocr/tessdata
+    ls ~/local/share/tessdata
     
     configs           eng.cube.params        eng.traineddata.__tmp__
     eng.cube.bigrams  eng.cube.size          equ.traineddata
@@ -29,9 +42,9 @@ The packs should be decompressed and put under '**/usr/share/tesseract-ocr/tessd
     eng.cube.lm       eng.tesseract_cube.nn  tessconfigs
     eng.cube.nn       eng.traineddata
 
-Be sure to set the parent folder path of language packs in environment variables:
+Be sure to set the parent folder path of language packs in environment variables, for instance:
 
-    export TESSDATA_PREFIX=/usr/share/tesseract-ocr/
+    export TESSDATA_PREFIX=/home/markpeng/local/share/
 
 
 ####How to start tesseract-web-service
@@ -47,7 +60,7 @@ Then put all .py files to /opt/ocr and make them executable.
 
 Start tesseract-web-service by:
 
-    python tesseractserver.py -b "/home/markpeng/local/lib" -d "/usr/share/tesseract-ocr/"
+    python tesseractserver.py -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
 
 Type the following command to check the options.
 
@@ -72,7 +85,7 @@ Please make sure that the firewall is opened for lisenting port.
 
 For example, you can change the port to 8080 by:
 
-    python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/usr/share/tesseract-ocr/"
+    python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
