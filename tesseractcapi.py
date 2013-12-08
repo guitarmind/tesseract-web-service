@@ -30,7 +30,7 @@ import Image
 """
 Get result string directly from tesseract C API
 """
-class tesseactWrapper:
+class TesseactWrapper:
     def __init__(self, lang, libpath, tessdata):
         libname = libpath + "/libtesseract.so.3.0.2"
         libname_alt = "/libtesseract.so.3"
@@ -68,9 +68,9 @@ class tesseactWrapper:
           print("Could not initialize tesseract.\n")
           exit(3)
 
-    def imageFileToString(self, filename):
+    def imageFileToString(self, filePath):
         # Runing tesseract-ocr
-        text_out = self.tesseract.TessBaseAPIProcessPages(self.api, filename, None, 0)
+        text_out = self.tesseract.TessBaseAPIProcessPages(self.api, filePath, None, 0)
         result_text = ctypes.string_at(text_out)
         print 'Result: ', result_text
 
@@ -145,14 +145,14 @@ def main():
         targetWidth = options.minWidth
 
     # call tesseract C API
-    wrapper = tesseactWrapper(options.lang, options.libPath, options.tessdata)
+    wrapper = TesseactWrapper(options.lang, options.libPath, options.tessdata)
     wrapper.imageUrlToString(options.imageUrl, targetWidth)
 
     # Test
     # lang = "eng"
     # libpath = "/home/markpeng/local/lib"
     # tessdata = "/home/markpeng/temp/tesseract-ocr/"
-    # wrapper = tesseactWrapper(lang, libpath, tessdata)
+    # wrapper = TesseactWrapper(lang, libpath, tessdata)
     # url = "http://price2.suning.cn/webapp/wcs/stores/prdprice/398956_9017_10000_9-1.png"
     # url = "http://price1.suning.cn/webapp/wcs/stores/prdprice/12973756_9017_10052_11-9.png"
     # wrapper.imageUrlToString(url, 150)

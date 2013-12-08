@@ -5,9 +5,8 @@ import tornado.web
 import optparse
 import pprint
 import Image
-from tesseractapi import image_to_string
 import StringIO
-import os.path
+import os
 import uuid
 
 # for downloading PNG image from url
@@ -15,12 +14,13 @@ import urllib, cStringIO
 import json
 
 # C API wrapper
-from tesseractcapi import tesseactWrapper
+from tesseractcapi import TesseactWrapper
 
 # global variables
 lang = "eng"
 libpath = ""
 tessdata = ""
+workingFolderPath = os.getcwd()
 
 """
 Handles the GET/POST of image files to OCR result string.
@@ -49,14 +49,33 @@ class FileUploadHandler(tornado.web.RequestHandler):
             tmpImg = tmpImg.resize((targetWidth, newHeight), Image.ANTIALIAS)
             print "resize image to (" + str(targetWidth) + "," + str(newHeight) + ")"
 
+        # save tmp image
+        global workingFolderPath
+        tmpFilePath = workingFolderPath + "/static/" + tempname
+        print "workingFolderPath: ", workingFolderPath
+        print "tmpFilePath: ", tmpFilePath
+        tmpImg.save(tmpFilePath)
+
         # do OCR, print result
-        result = image_to_string(tmpImg)
+        wrapper = TesseactWrapper(lang, libpath, tessdata)
+        result = wrapper.imageFileToString(tmpFilePath)
+        # result = image_to_string(tmpImg)
+
+        # remove tmp image file
+        self.cleanup(tmpFilePath)
+
         if "." not in result and " " in result:
             result = result.replace(" ", ".")
         else:
             result = result.replace(" ", "")
         self.write(result)
         self.write("")
+
+    def cleanup(self, filePath):
+        try:
+            os.remove(filePath)
+        except OSError:
+            pass
 
 
 """
@@ -71,29 +90,6 @@ class ImageUrlHandler(tornado.web.RequestHandler):
                 <html>
                 <title>Tesseract Web Service</title>
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-                <script>
-                    $(document).ready(function(){
-                        $("form#mainForm").submit(function() {
-                            var imageUrl = document.getElementById("imageUrl").value;
-                            var resultEle = document.getElementById("result");
-
-                            if(imageUrl !== "") {
-                                $.ajax({
-                                       type: "POST",
-                                       url: "/fetchurl",
-                                       contentType: 'multipart/form-data',
-                                       data: $('form#mainForm').serialize(),
-                                       success: function(data) {
-                                           alert('data:' + data);
-                                           resultEle.innerHTML = "<span>Result JSON:</span><br/>" + data;
-                                       }
-                                });
-                            }
-
-                            return false; // avoid to execute the actual submit of the form.
-                        });
-                    });  
-                </script>
                 <body>
                     <h2>Tesseract Web Service</h2>
                     <form name="mainForm" id="mainForm" action="" method="POST" enctype="multipart/form-data">
@@ -121,7 +117,7 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         minWidth = 150;
  
         # do OCR, get result string
-        wrapper = tesseactWrapper(lang, libpath, tessdata)
+        wrapper = TesseactWrapper(lang, libpath, tessdata)
         result = wrapper.imageUrlToString(url, minWidth)
         if "." not in result and " " in result:
             result = result.replace(" ", ".")
