@@ -4,7 +4,7 @@
 # Copyright 2013
 # Author: Mark Peng
 # 
-# Extended from Zdenko Podobný's work at: http://code.google.com/p/tesseract-ocr/wiki/APIExample)
+# Extended from Zdenko Podobný's work at: http://code.google.com/p/tesseract-ocr/wiki/APIExample
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
