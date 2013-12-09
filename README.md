@@ -82,7 +82,7 @@ Type the following command to check the options.
       -h, --help            show this help message and exit
       -p PORT, --port=PORT  the listening port of RESTful tesseract web service.
                             (default: 1688)
-      -l LANG, --lang=LANG  the targe language. (defaut: eng
+      -l LANG, --lang=LANG  the targe language. (default: eng)
       -b LIBPATH, --lib-path=LIBPATH
                             the absolute path of tesseract library.
       -d TESSDATA, --tessdata-folder=TESSDATA
