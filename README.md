@@ -24,7 +24,7 @@ Install tornado and PIL image library by apt-get.
     sudo apt-get install python-tornado
     sudo apt-get install python-imaging
     
-You need to compile and install the latest version (3.02.02) of tesseract-ocr manually to support C API. More detail can be found at <a href="https://code.google.com/p/tesseract-ocr/wiki/Compiling" target="_blank">this wiki</a>. Here is an example on Ubuntu 12.04 LTS:
+You need to compile and install the latest version (3.02.02) of tesseract-ocr manually to support C API. More details can be found at <a href="https://code.google.com/p/tesseract-ocr/wiki/Compiling" target="_blank">this wiki</a>. Here is an example on Ubuntu 12.04 LTS:
 
     mkdir ~/temp
     mkdir ~/temp/tessdata
