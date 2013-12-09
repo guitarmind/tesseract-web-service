@@ -21,6 +21,8 @@ lang = "eng"
 libpath = ""
 tessdata = ""
 workingFolderPath = os.getcwd()
+wrapper = None
+
 
 """
 Handles the GET/POST of image files to OCR result string.
@@ -57,7 +59,7 @@ class FileUploadHandler(tornado.web.RequestHandler):
         tmpImg.save(tmpFilePath)
 
         # do OCR, print result
-        wrapper = TesseactWrapper(lang, libpath, tessdata)
+        global wrapper
         result = wrapper.imageFileToString(tmpFilePath)
 
         # remove tmp image file
@@ -115,7 +117,7 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         minWidth = 150;
  
         # do OCR, get result string
-        wrapper = TesseactWrapper(lang, libpath, tessdata)
+        global wrapper
         result = wrapper.imageUrlToString(url, minWidth)
         if "." not in result and " " in result:
             result = result.replace(" ", ".")
@@ -149,6 +151,7 @@ def main():
     global lang
     global libpath
     global tessdata
+    global wrapper
 
     if options.lang:   # if lang is given
         lang = options.lang
@@ -160,6 +163,9 @@ def main():
         parser.error('tessdata not given')
     else:
         tessdata = options.tessdata
+    
+    # create global wrapper instance for reuse
+    wrapper = TesseactWrapper(lang, libpath, tessdata)
 
     port = options.port
     if not options.port:   # if port is not given, use the default one 
