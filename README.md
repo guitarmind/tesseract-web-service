@@ -13,6 +13,7 @@ A full list of C APIs supported in tesseract-ocr version 3.02.02 is at <a href="
     Upload Image File: /upload
     Fetch Image From URL: /fetchurl
 
+
 ####Tesseract Installation on Ubuntu 12.04 LTS
 
 Python Requirement
@@ -55,6 +56,7 @@ Be sure to set the parent folder path of language packs in environment variables
     export TESSDATA_PREFIX=/home/markpeng/local/share/
 
 
+
 ####How to start tesseract-web-service
 Create a folder named '**static**' under current folder (for instance, '**/opt/ocr**') to keep temp files
 
@@ -94,6 +96,7 @@ Please make sure that the firewall is opened for lisenting port.
 For example, you can change the port to 8080 by:
 
     python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
+
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
@@ -138,6 +141,7 @@ Then you shall get a JSON response similar to the following:
     }
 
 
+
 ####How to call RESTful API by tesseract client
 tesseractclient.py is a client for calling the "Fetch Image From URL" API.
 
@@ -160,6 +164,7 @@ For instance:
     python /opt/ocr/tesseractclient.py -a "http://localhost:1688/fetchurl" -i "http://www.greatdreams.com/666-magicsquare.gif"
 
 You should provide the API url and image source url to make it work.
+
 
 
 ##Changelog
