@@ -161,7 +161,27 @@ For instance:
 
 You should provide the API url and image source url to make it work.
 
-####Copyright and License
+
+##Changelog
+
+####0.0.1 - 2013-11-23
+
+Features:
+
+  - Support basic GET/POST APIs for "upload" and "fetchUrl" APIs
+  - File-based processing
+
+
+####0.0.2 - 2013-12-08
+
+Features:
+
+  - Add a Python wrapper for calling tesseract-ocr C API directly
+  - Memory-based processing for "fetchUrl" API
+
+
+
+##Copyright and License
 
 Author: Mark Peng (markpeng.ntu at gmail)
 
