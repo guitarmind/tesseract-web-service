@@ -143,7 +143,7 @@ application = tornado.web.Application([
 def main():
     parser = optparse.OptionParser()
     parser.add_option('-p', '--port', dest='port', help='the listening port of RESTful tesseract web service. (default: 1688)')
-    parser.add_option('-l', '--lang', dest='lang', help='the targe language. (defaut: eng')
+    parser.add_option('-l', '--lang', dest='lang', help='the targe language. (default: eng)')
     parser.add_option('-b', '--lib-path', dest='libPath', help='the absolute path of tesseract library.')
     parser.add_option('-d', '--tessdata-folder', dest='tessdata', help='the absolute path of tessdata folder containing language packs.')
     (options, args) = parser.parse_args()
