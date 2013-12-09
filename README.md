@@ -4,7 +4,7 @@ tesseract-web-service
 An implementation of RESTful web service for tesseract-OCR. The HTTP server is implemented using tornado.
 
 As of tesseract-ocr version 3.02.02, it provides a <a href="https://code.google.com/p/tesseract-ocr/wiki/APIExample" target="_blank">C-API</a>.
-Now while calling the "Fetch Image From URL" API, all operations are done in memory for better performance. No file I/O is required. The python implementation of C API wrapper can be found in [**tesseractcapi.py**](https://github.com/guitarmind/tesseract-web-service/blob/master/tesseractcapi.py)
+Now while calling the "Fetch Image From URL" API, operations are done in memory for better performance. No file I/O is required. The python implementation of C API wrapper can be found in [**tesseractcapi.py**](https://github.com/guitarmind/tesseract-web-service/blob/master/tesseractcapi.py). Bulk processing is planned to the future version.
 
 ####Support two APIs with GET and POST
 
@@ -15,7 +15,7 @@ Now while calling the "Fetch Image From URL" API, all operations are done in mem
 
 Python Requirement
 
-    version >= 2.5
+    version >= 2.7
 
 Install tornado and PIL image library by apt-get.
 
