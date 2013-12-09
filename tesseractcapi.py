@@ -36,14 +36,14 @@ class TesseactWrapper:
         libname_alt = "/libtesseract.so.3"
 
         try:
-          self.tesseract = ctypes.cdll.LoadLibrary(libname)
+            self.tesseract = ctypes.cdll.LoadLibrary(libname)
         except:
-          try:
-            self.tesseract = ctypes.cdll.LoadLibrary(libname_alt)
-          except:
-            print("Trying to load '%s'..." % libname)
-            print("Trying to load '%s'..." % libname_alt)
-            exit(1)
+            try:
+                self.tesseract = ctypes.cdll.LoadLibrary(libname_alt)
+            except:
+                print("Trying to load '%s'..." % libname)
+                print("Trying to load '%s'..." % libname_alt)
+                exit(1)
 
         self.tesseract.TessVersion.restype = ctypes.c_char_p
         tesseract_version = self.tesseract.TessVersion()
@@ -51,22 +51,22 @@ class TesseactWrapper:
         # preprocessing version name 
         trimmed_version = tesseract_version
         if tesseract_version.count('.') > 1:
-          trimmed_version = tesseract_version[:(tesseract_version.index('.') + 3)]
+            trimmed_version = tesseract_version[:(tesseract_version.index('.') + 3)]
 
         # We need to check library version because libtesseract.so.3 is symlink
         # and can point to other version than 3.02
         if float(trimmed_version) < 3.02:
-          print("Found tesseract-ocr library version %s." % tesseract_version)
-          print("C-API is present only in version 3.02!")
-          exit(2)
+            print("Found tesseract-ocr library version %s." % tesseract_version)
+            print("C-API is present only in version 3.02!")
+            exit(2)
 
         self.api = self.tesseract.TessBaseAPICreate()
 
         rc = self.tesseract.TessBaseAPIInit3(self.api, tessdata, lang)
         if (rc):
-          self.tesseract.TessBaseAPIDelete(api)
-          print("Could not initialize tesseract.\n")
-          exit(3)
+            self.tesseract.TessBaseAPIDelete(api)
+            print("Could not initialize tesseract.\n")
+            exit(3)
 
     def imageFileToString(self, filePath):
         
@@ -98,8 +98,8 @@ class TesseactWrapper:
         copyData = [0] * len(data) * 4
         for i in range(len(data)):
             for j in range(len(data[i])):
-              cursor = i * 4 + j
-              copyData[cursor] = data[i][j]
+                cursor = i * 4 + j
+                copyData[cursor] = data[i][j]
 
         # compute stride
         bytesPerLine = minWidth * 4
@@ -108,7 +108,7 @@ class TesseactWrapper:
         arrayLength = newHeight * minWidth * 4
         ubyteArray = (ctypes.c_ubyte * arrayLength)()
         for i in xrange(arrayLength):
-          ubyteArray[i] = copyData[i]
+            ubyteArray[i] = copyData[i]
 
         # call SetImage  
         self.tesseract.TessBaseAPISetImage.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_ubyte), ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int]
