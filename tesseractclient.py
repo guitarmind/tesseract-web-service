@@ -32,9 +32,9 @@ def main():
     (options, args) = parser.parse_args()
 
     if not options.apiUrl:   # if apiUrl is not given
-      parser.error('api-url not given')
+        parser.error('api-url not given')
     if not options.imageUrl:   # if imageUrl is not given
-      parser.error('image-url not given')
+        parser.error('image-url not given')
 
     # call tesseract API
     ocrAPI(options.apiUrl, options.imageUrl)
