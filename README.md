@@ -97,6 +97,9 @@ For example, you can change the port to 8080 by:
 
     python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
 
+To start it as a persistent service even after terminal logout:
+
+    sudo nohup python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/" &
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
