@@ -84,7 +84,6 @@ class TesseactWrapper:
         tmpImg = Image.open(file)
 
         # force resize to minimal width if the incoming image is too small for better precision
-        minWidth = 150
         width, height = tmpImg.size
         newHeight = height
         if width < minWidth:
