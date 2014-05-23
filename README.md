@@ -107,7 +107,7 @@ The web service provides two HTTP GET pages for testing the API:
     Upload Image File: http://localhost:1688/upload
     Fetch Image From URL: http://localhost:1688/fetchurl
 
-The results are returned in JSON format with ORC result strings.
+The results are returned in JSON format with OCR result strings.
 
 
 If you would like to call "Fetch Image From URL" API with POST, please send a HTTP request header similar to the following:
