@@ -91,7 +91,7 @@ Type the following command to check the options.
              
 
 The default listening port is **1688**. Change it to yours on startup.
-Please make sure that the firewall is opened for lisenting port.
+Please make sure that the firewall is opened for listening port.
 
 For example, you can change the port to 8080 by:
 
