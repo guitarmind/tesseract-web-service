@@ -6,7 +6,7 @@ An implementation of RESTful web service for tesseract-OCR. The HTTP server is i
 As of tesseract-ocr version 3.02.02, it provides a <a href="https://code.google.com/p/tesseract-ocr/wiki/APIExample" target="_blank">C-API</a>.
 Now while calling the "Fetch Image From URL" API, operations are done in memory for better performance. No file I/O is required. The python implementation of C API wrapper using ctypes can be found in [**tesseractcapi.py**](https://github.com/guitarmind/tesseract-web-service/blob/master/tesseractcapi.py). Bulk processing is planned to appear in the future version.
 
-A full list of C APIs supported in tesseract-ocr version 3.02.02 is at <a href="http://code.google.com/p/tesseract-ocr/source/browse/tags/release-3.02.02/api/capi.h" target="_blank">here</a> with detailed signatures and comments.
+A full list of C APIs supported in tesseract-ocr version 3.02.02 is at <a href="https://code.google.com/p/tesseract-ocr/source/browse/api/capi.h" target="_blank">here</a> with detailed signatures and comments.
 
 ####Support two APIs with GET and POST
 
