@@ -43,7 +43,7 @@ RUN cd ~/temp/ \
   && mkdir ~/local \
   && ./configure --prefix=$HOME/local/ \
   && make \
-  && mkdir ~/local/share \
+  && make install \
   && cd ~/local/share \
   && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz \
   && tar xvf tesseract-ocr-3.02.eng.tar.gz
@@ -52,8 +52,8 @@ ENV TESSDATA_PREFIX /root/local/share/tesseract-ocr
 
 RUN mkdir -p /opt/ocr/static
 
-COPY tesseractcapi.py /opt/ocr
-COPY tesseractserver.py /opt/ocr
+COPY tesseractcapi.py /opt/ocr/tesseractcapi.py
+COPY tesseractserver.py /opt/ocr/tesseractserver.py
 
 RUN chmod 755 /opt/ocr/*.py 
 
@@ -61,5 +61,5 @@ EXPOSE 8080
 
 WORKDIR /opt/ocr
 
-CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "8080", "-b", "\"/root/local/lib\"", "-d", "\"/root/local/share/tesseract-ocr\"" ]
+CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "8080", "-b", "/root/local/lib", "-d", "/root/local/share/tesseract-ocr" ]
 
