@@ -68,7 +68,11 @@ Then put all .py files to /opt/ocr and make them executable.
     cp ~/Share/tesseract-web-service/* /opt/ocr
     sudo chmod 755 /opt/ocr/*.py
 
-Start tesseract-web-service by:
+Note: you should go to the folder path containing the **static** folder to make the service work.
+
+    cd /opt/ocr
+
+Now, start tesseract-web-service by:
 
     python tesseractserver.py -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
 
