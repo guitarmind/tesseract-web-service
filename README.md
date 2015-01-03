@@ -1,12 +1,13 @@
 tesseract-web-service
 =====================
 
-An implementation of RESTful web service for tesseract-OCR. The HTTP server is implemented using tornado.
+An implementation of RESTful web service for tesseract-OCR. The HTTP server is implemented using tornado. A [**Docker Container**](https://registry.hub.docker.com/u/guitarmind/tesseract-web-service/) has been created to let you run this service without any installation efforts!
 
-As of tesseract-ocr version 3.02.02, it provides a <a href="https://code.google.com/p/tesseract-ocr/wiki/APIExample" target="_blank">C-API</a>.
+As of tesseract-ocr version 3.02.02, it provides a [C-API](https://code.google.com/p/tesseract-ocr/wiki/APIExample).
 Now while calling the "Fetch Image From URL" API, operations are done in memory for better performance. No file I/O is required. The python implementation of C API wrapper using ctypes can be found in [**tesseractcapi.py**](https://github.com/guitarmind/tesseract-web-service/blob/master/tesseractcapi.py). Bulk processing is planned to appear in the future version.
 
-A full list of C APIs supported in tesseract-ocr version 3.02.02 is at <a href="https://code.google.com/p/tesseract-ocr/source/browse/api/capi.h" target="_blank">here</a> with detailed signatures and comments.
+A full list of C APIs supported in tesseract-ocr version 3.02.02 is at [here](https://code.google.com/p/tesseract-ocr/source/browse/api/capi.h) with detailed signatures and comments.
+
 
 ####Support two APIs with GET and POST
 
@@ -20,30 +21,56 @@ Python Requirement
 
     version >= 2.7
 
-Install tornado and PIL image library by apt-get.
+Install tornado, PIL image library and other required packages by apt-get.
 
-    sudo apt-get install python-tornado
-    sudo apt-get install python-imaging
+    sudo apt-get update && sudo apt-get install -y \
+        autoconf \
+        automake \
+        autotools-dev \
+        build-essential \
+        checkinstall \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
+        libtool \
+        python \
+        python-imaging \
+        python-tornado \
+        wget \
+        zlib1g-dev
     
-You need to compile and install the latest version (3.02.02) of tesseract-ocr manually to support C API. More details can be found at <a href="https://code.google.com/p/tesseract-ocr/wiki/Compiling" target="_blank">this wiki</a>. Here is an example on Ubuntu 12.04 LTS:
+You need to compile and install leptonica and the latest version (3.02.02) of tesseract-ocr manually to support C API. More details can be found at [this wiki](https://code.google.com/p/tesseract-ocr/wiki/Compiling). Here is an example on Ubuntu 12.04 LTS:
 
-    mkdir ~/temp
-    mkdir ~/temp/tessdata
-    cd ~/temp
-    wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
-    tar xvf tesseract-ocr-3.02.02.tar.gz
-    cd tesseract-ocr
-    sudo ./autogen.sh
-    mkdir ~/local
-    sudo ./configure --prefix=$HOME/local/
-    sudo make
-    sudo make install
+    mkdir ~/temp \
+        && cd ~/temp/ \
+        wget http://www.leptonica.org/source/leptonica-1.69.tar.gz \
+        && tar -zxvf leptonica-1.69.tar.gz \
+        && cd leptonica-1.69 \
+        && ./configure \
+        && make \
+        && checkinstall \
+        && ldconfig
+
+
+    cd ~/temp/ \
+        && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz \
+        && tar xvf tesseract-ocr-3.02.02.tar.gz \
+        && cd tesseract-ocr \
+        && ./autogen.sh \
+        && mkdir ~/local \
+        && ./configure --prefix=$HOME/local/ \
+        && make \
+        && make install
 
 Only English letters and digits are supported by default.
 You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list. 
-Decompress and put the packs under '**~/local/share/tessdata**' or other locations you like.
+Decompress and put the packs under '**~/local/share/**' or other locations you like.
 
-    ls ~/local/share/tessdata
+    cd ~/local/share \
+        && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz \
+        && tar xvf tesseract-ocr-3.02.eng.tar.gz
+
+    ls ~/local/share/tesseract-ocr/tessdata
     
     configs           eng.cube.params        eng.traineddata.__tmp__
     eng.cube.bigrams  eng.cube.size          equ.traineddata
@@ -53,19 +80,19 @@ Decompress and put the packs under '**~/local/share/tessdata**' or other locatio
 
 Be sure to set the parent folder path of language packs in environment variables, for instance:
 
-    export TESSDATA_PREFIX=/home/markpeng/local/share/
+    export TESSDATA_PREFIX=/home/markpeng/local/share/tesseract-ocr/
 
 
 
 ####How to start tesseract-web-service
 Create a folder named '**static**' under current folder (for instance, '**/opt/ocr**') to keep temp files
 
-    mkdir /opt/ocr
-    mkdir /opt/ocr/static
+    sudo mkdir /opt/ocr
+    sudo mkdir /opt/ocr/static
 
 Then put all .py files to /opt/ocr and make them executable.
 
-    cp ~/Share/tesseract-web-service/* /opt/ocr
+    sudo cp ~/Share/tesseract-web-service/* /opt/ocr
     sudo chmod 755 /opt/ocr/*.py
 
 Note: you should go to the folder path containing the **static** folder to make the service work.
@@ -74,7 +101,7 @@ Note: you should go to the folder path containing the **static** folder to make 
 
 Now, start tesseract-web-service by:
 
-    python tesseractserver.py -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
+    python tesseractserver.py -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/tesseract-ocr"
 
 Type the following command to check the options.
 
@@ -99,11 +126,11 @@ Please make sure that the firewall is opened for listening port.
 
 For example, you can change the port to 8080 by:
 
-    python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/"
+    python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/tesseract-ocr"
 
 To start it as a persistent service even after terminal logout:
 
-    sudo nohup python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/" &
+    sudo nohup python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/tesseract-ocr" &
 
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
@@ -173,6 +200,19 @@ For instance:
 You should provide the API url and image source url to make it work.
 
 
+####How to pull and run Docker Container
+Install Docker to your host by following the user guide:
+
+
+After that, execute the following command to download Docker Image (packaged in Ubuntu 12.04 LTS):
+
+    docker pull guitarmind/tesseract-web-service
+
+To run the web service using container, just type:
+
+    docker run --rm -d -p 8080:8080 guitarmind/tesseract-web-service
+
+Note that the -p flag is used to bind local port with Container's virtual port. By default it is set to 8080. You can change it by modifying the [Dockerfile](https://github.com/guitarmind/tesseract-web-service/blob/master/Dockerfile). -d flag means to run it in daemon mode.
 
 ##Changelog
 
@@ -191,6 +231,12 @@ Features:
   - Add a Python wrapper for calling tesseract-ocr C API directly
   - Memory-based processing for "fetchUrl" API
 
+
+####0.0.3 - 2015-01-03
+
+Features:
+
+  - Add a Docker Container for easy installation and deployment
 
 
 ##Copyright and License
