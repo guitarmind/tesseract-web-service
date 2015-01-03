@@ -201,8 +201,7 @@ You should provide the API url and image source url to make it work.
 
 
 ####How to pull and run Docker Container
-Install Docker to your host by following the user guide:
-
+Install Docker to your host by following the [official installation guide](https://docs.docker.com/installation/#installation).
 
 After that, execute the following command to download Docker Image (packaged in Ubuntu 12.04 LTS):
 
@@ -213,6 +212,9 @@ To run the web service using container, just type:
     docker run --rm -d -p 8080:8080 guitarmind/tesseract-web-service
 
 Note that the -p flag is used to bind local port with Container's virtual port. By default it is set to 8080. You can change it by modifying the [Dockerfile](https://github.com/guitarmind/tesseract-web-service/blob/master/Dockerfile). -d flag means to run it in daemon mode.
+
+The container has been created as an Automated Build::
+https://registry.hub.docker.com/u/guitarmind/tesseract-web-service/
 
 ##Changelog
 
