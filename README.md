@@ -213,7 +213,8 @@ To run the web service using container, just type:
 
 Note that the -p flag is used to bind local port with Container's virtual port. By default it is set to 1688. You can change it by modifying the [Dockerfile](https://github.com/guitarmind/tesseract-web-service/blob/master/Dockerfile). The -d flag means to run it in daemon mode.
 
-The container has been created as an Automated Build::
+The container has been created as an Automated Build:
+
 https://registry.hub.docker.com/u/guitarmind/tesseract-web-service/
 
 ##Changelog
