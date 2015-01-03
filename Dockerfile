@@ -1,7 +1,7 @@
 # 
 # Stand-alone tesseract-ocr web service in python.
 # 
-# Version: 0.0.2 
+# Version: 0.0.3 
 # Developed by Mark Peng (markpeng.ntu at gmail)
 # 
 
