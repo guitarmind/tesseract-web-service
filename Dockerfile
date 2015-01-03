@@ -57,7 +57,7 @@ COPY tesseractserver.py /opt/ocr/tesseractserver.py
 
 RUN chmod 755 /opt/ocr/*.py 
 
-EXPOSE 8080
+EXPOSE 1688
 
 WORKDIR /opt/ocr
 
