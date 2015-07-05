@@ -132,6 +132,48 @@ To start it as a persistent service even after terminal logout:
 
     sudo nohup python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/tesseract-ocr" &
 
+####Tesseract Installation on Ubuntu 14.04 LTS
+
+Python Requirement
+
+    version >= 2.7
+
+Install tornado, PIL image library and other required packages by apt-get.
+
+    sudo apt-get update && sudo apt-get install -y \
+        autoconf \
+        automake \
+        autotools-dev \
+        build-essential \
+        checkinstall \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
+        libtool \
+        python \
+        python-imaging \
+        python-tornado \
+        wget \
+        zlib1g-dev
+    
+Install the tesseract library:
+
+    sudo apt-get install tesseract-ocr-dev
+    
+Correct the Filename( or use this Repository):
+
+    class TesseactWrapper:
+        def __init__(self, lang, libpath, tessdata):
+            libname = libpath + "/libtesseract.so.3.0.3"
+
+    
+    
+Now, start tesseract-web-service by:
+
+    python tesseractserver.py -p 1688 -b /usr/lib -d /usr/share/tesseract-ocr/tessdata/
+
+
+
 ####How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
 
