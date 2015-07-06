@@ -32,18 +32,23 @@ Get result string directly from tesseract C API
 """
 class TesseactWrapper:
     def __init__(self, lang, libpath, tessdata):
-        libname = libpath + "/libtesseract.so.3.0.2"
+        libname_302 = libpath + "/libtesseract.so.3.0.2"
+        libname_303 = libpath + "/libtesseract.so.3.0.3"
         libname_alt = "/libtesseract.so.3"
 
         try:
-            self.tesseract = ctypes.cdll.LoadLibrary(libname)
+            self.tesseract = ctypes.cdll.LoadLibrary(libname_302)
         except:
             try:
-                self.tesseract = ctypes.cdll.LoadLibrary(libname_alt)
+                self.tesseract = ctypes.cdll.LoadLibrary(libname_303)    
             except:
-                print("Trying to load '%s'..." % libname)
-                print("Trying to load '%s'..." % libname_alt)
-                exit(1)
+                try:
+                    self.tesseract = ctypes.cdll.LoadLibrary(libname_alt)
+                except:
+                    print("Trying to load '%s'..." % libname)
+                    print("Trying to load '%s'..." % libname_alt)
+                    print("Loading failed from the locations above.")
+                    exit(1)
 
         self.tesseract.TessVersion.restype = ctypes.c_char_p
         tesseract_version = self.tesseract.TessVersion()
