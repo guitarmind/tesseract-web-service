@@ -167,7 +167,7 @@ Correct the Filename( or use this Repository):
             libname = libpath + "/libtesseract.so.3.0.3"
 
 
-check for English training data (Filename: eng.traineddata in /usr/share/tesseract-ocr/tessdata/).
+Check for English training data (Filename: eng.traineddata in /usr/share/tesseract-ocr/tessdata/).
 If not exist do:
 
     wget https://tesseract-ocr.googlecode.com/files/eng.traineddata.gz
@@ -175,6 +175,7 @@ If not exist do:
     sudo mv -v eng.traineddata /usr/local/share/tessdata/
 
 Create a static folder in repo main directly:
+
     mkdir static
 
 Now, start tesseract-web-service by:
