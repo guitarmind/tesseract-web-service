@@ -174,7 +174,7 @@ If not exist do:
     gunzip eng.traineddata.gz
     sudo mv -v eng.traineddata /usr/local/share/tessdata/
 
-Create a static folder in repo main directly:
+Create a static folder in repo main directory:
 
     mkdir static
 
