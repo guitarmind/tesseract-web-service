@@ -69,7 +69,7 @@ class TesseactWrapper:
 
         rc = self.tesseract.TessBaseAPIInit3(self.api, tessdata, lang)
         if (rc):
-            self.tesseract.TessBaseAPIDelete(api)
+            self.tesseract.TessBaseAPIDelete(self.api)
             print("Could not initialize tesseract.\n")
             exit(3)
 
