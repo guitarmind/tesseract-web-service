@@ -69,8 +69,12 @@ class FileUploadHandler(tornado.web.RequestHandler):
             result = result.replace(" ", ".")
         else:
             result = result.replace(" ", "")
-        self.write(result)
-        self.write("")
+
+        # send response json
+        response = { 'result': result }
+        self.write(response)
+
+        print response
 
     def cleanup(self, filePath):
         try:
