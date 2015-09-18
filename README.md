@@ -66,6 +66,7 @@ Only English letters and digits are supported by default.
 You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list.
 Decompress and put the packs under '**~/local/share/**' or other locations you like.
 
+    mkdir ~/local/share -p
     cd ~/local/share \
         && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz \
         && tar xvf tesseract-ocr-3.02.eng.tar.gz
@@ -87,8 +88,7 @@ Be sure to set the parent folder path of language packs in environment variables
 ####How to start tesseract-web-service
 Create a folder named '**static**' under current folder (for instance, '**/opt/ocr**') to keep temp files
 
-    sudo mkdir /opt/ocr
-    sudo mkdir /opt/ocr/static
+    sudo mkdir /opt/ocr/static -p
 
 Then put all .py files to /opt/ocr and make them executable.
 
@@ -226,7 +226,7 @@ Then you shall get a JSON response similar to the following:
         'result': '2158.00'
     }
 
-
+Note that for /upload API, since there is no url provided, only result string will be returned in JSON.
 
 ####How to call RESTful API by tesseract client
 tesseractclient.py is a client for calling the "Fetch Image From URL" API.
@@ -292,6 +292,14 @@ Features:
 Features:
 
   - Add a Docker Container for easy installation and deployment
+
+
+####0.0.4 - 2015-09-18
+
+Features:
+
+  - Fixed issue [#3](https://github.com/guitarmind/tesseract-web-service/issues/3)
+  - Merged pull request [#1](https://github.com/guitarmind/tesseract-web-service/pull/1), [#2](https://github.com/guitarmind/tesseract-web-service/pull/2), [#4](https://github.com/guitarmind/tesseract-web-service/pull/4) and [#6](https://github.com/guitarmind/tesseract-web-service/pull/6) accordingly.
 
 
 ##Copyright and License
