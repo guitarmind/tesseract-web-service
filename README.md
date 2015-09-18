@@ -38,7 +38,7 @@ Install tornado, PIL image library and other required packages by apt-get.
         python-tornado \
         wget \
         zlib1g-dev
-    
+
 You need to compile and install leptonica and the latest version (3.02.02) of tesseract-ocr manually to support C API. More details can be found at [this wiki](https://code.google.com/p/tesseract-ocr/wiki/Compiling). Here is an example on Ubuntu 12.04 LTS:
 
     mkdir ~/temp \
@@ -63,7 +63,7 @@ You need to compile and install leptonica and the latest version (3.02.02) of te
         && make install
 
 Only English letters and digits are supported by default.
-You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list. 
+You can download more language packs, such as Simplified/Traditional Chinese pack from http://code.google.com/p/tesseract-ocr/downloads/list.
 Decompress and put the packs under '**~/local/share/**' or other locations you like.
 
     cd ~/local/share \
@@ -71,7 +71,7 @@ Decompress and put the packs under '**~/local/share/**' or other locations you l
         && tar xvf tesseract-ocr-3.02.eng.tar.gz
 
     ls ~/local/share/tesseract-ocr/tessdata
-    
+
     configs           eng.cube.params        eng.traineddata.__tmp__
     eng.cube.bigrams  eng.cube.size          equ.traineddata
     eng.cube.fold     eng.cube.word-freq     osd.traineddata
@@ -119,7 +119,7 @@ Type the following command to check the options.
       -d TESSDATA, --tessdata-folder=TESSDATA
                             the absolute path of tessdata folder containing
                             language packs.
-             
+
 
 The default listening port is **1688**. Change it to yours on startup.
 Please make sure that the firewall is opened for listening port.
@@ -155,19 +155,29 @@ Install tornado, PIL image library and other required packages by apt-get.
         python-tornado \
         wget \
         zlib1g-dev
-    
+
 Install the tesseract library:
 
     sudo apt-get install tesseract-ocr-dev
-    
+
 Correct the Filename( or use this Repository):
 
     class TesseactWrapper:
         def __init__(self, lang, libpath, tessdata):
             libname = libpath + "/libtesseract.so.3.0.3"
 
-    
-    
+
+Check for English training data (Filename: eng.traineddata in /usr/share/tesseract-ocr/tessdata/).
+If not exist do:
+
+    wget https://tesseract-ocr.googlecode.com/files/eng.traineddata.gz
+    gunzip eng.traineddata.gz
+    sudo mv -v eng.traineddata /usr/local/share/tessdata/
+
+Create a static folder in repo main directory:
+
+    mkdir static
+
 Now, start tesseract-web-service by:
 
     python tesseractserver.py -p 1688 -b /usr/lib -d /usr/share/tesseract-ocr/tessdata/
@@ -196,7 +206,7 @@ If you would like to call "Fetch Image From URL" API with POST, please send a HT
     Referer: http://localhost:1688/fetchurl
     Accept-Encoding: gzip,deflate,sdch
     Accept-Language: zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4d license
-    
+
     .....
     POST data payload: imageUrl = 'http://xxxxxxx'
 
@@ -208,7 +218,7 @@ Example POST data in JSON:
     data: {
         'url': 'http://price1.suning.cn/webapp/wcs/stores/prdprice/89218_9173_10000_9-1.png'
     }
-    
+
 Then you shall get a JSON response similar to the following:
 
     data: {
@@ -224,7 +234,7 @@ tesseractclient.py is a client for calling the "Fetch Image From URL" API.
 Type the following command to check the options.
 
     python /opt/ocr/tesseractclient.py --help
-    
+
     Usage: tesseractclient.py [options]
 
     Options:
@@ -289,5 +299,3 @@ Features:
 Author: Mark Peng (markpeng.ntu at gmail)
 
 All codes are under the [Apache 2.0 license](LICENSE).
-
-
