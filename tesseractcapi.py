@@ -87,6 +87,7 @@ class TesseactWrapper:
         # download image from url
         file = cStringIO.StringIO(urllib.urlopen(url).read())
         tmpImg = Image.open(file)
+        tmpImg = tmpImg.convert("RGBA")
 
         # force resize to minimal width if the incoming image is too small for better precision
         width, height = tmpImg.size
