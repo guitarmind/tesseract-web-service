@@ -306,7 +306,7 @@ Features:
 
 Features:
 
-  - Fixed issue [#3](https://github.com/guitarmind/tesseract-web-service/issues/7)
+  - Fixed issue [#7](https://github.com/guitarmind/tesseract-web-service/issues/7)
 
 
 ##Copyright and License
