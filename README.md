@@ -302,6 +302,13 @@ Features:
   - Merged pull request [#1](https://github.com/guitarmind/tesseract-web-service/pull/1), [#2](https://github.com/guitarmind/tesseract-web-service/pull/2), [#4](https://github.com/guitarmind/tesseract-web-service/pull/4) and [#6](https://github.com/guitarmind/tesseract-web-service/pull/6) accordingly.
 
 
+####0.0.5 - 2016-02-11
+
+Features:
+
+  - Fixed issue [#3](https://github.com/guitarmind/tesseract-web-service/issues/7)
+
+
 ##Copyright and License
 
 Author: Mark Peng (markpeng.ntu at gmail)
