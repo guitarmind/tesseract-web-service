@@ -9,13 +9,13 @@ Now while calling the "Fetch Image From URL" API, operations are done in memory 
 A full list of C APIs supported in tesseract-ocr version 3.02.02 is at [here](https://code.google.com/p/tesseract-ocr/source/browse/api/capi.h) with detailed signatures and comments.
 
 
-####Support two APIs with GET and POST
+#### Support two APIs with GET and POST
 
     Upload Image File: /upload
     Fetch Image From URL: /fetchurl
 
 
-####Tesseract Installation on Ubuntu 12.04 LTS
+#### Tesseract Installation on Ubuntu 12.04 LTS
 
 Python Requirement
 
@@ -85,7 +85,7 @@ Be sure to set the parent folder path of language packs in environment variables
 
 
 
-####How to start tesseract-web-service
+#### How to start tesseract-web-service
 Create a folder named '**static**' under current folder (for instance, '**/opt/ocr**') to keep temp files
 
     sudo mkdir /opt/ocr/static -p
@@ -132,7 +132,7 @@ To start it as a persistent service even after terminal logout:
 
     sudo nohup python /opt/ocr/tesseractserver.py -p 8080 -b "/home/markpeng/local/lib" -d "/home/markpeng/local/share/tesseract-ocr" &
 
-####Tesseract Installation on Ubuntu 14.04 LTS
+#### Tesseract Installation on Ubuntu 14.04 LTS
 
 Python Requirement
 
@@ -184,7 +184,7 @@ Now, start tesseract-web-service by:
 
 
 
-####How to call RESTful API by GET/POST request
+#### How to call RESTful API by GET/POST request
 The web service provides two HTTP GET pages for testing the API:
 
     Upload Image File: http://localhost:1688/upload
@@ -228,7 +228,7 @@ Then you shall get a JSON response similar to the following:
 
 Note that for /upload API, since there is no url provided, only result string will be returned in JSON.
 
-####How to call RESTful API by tesseract client
+#### How to call RESTful API by tesseract client
 tesseractclient.py is a client for calling the "Fetch Image From URL" API.
 
 Type the following command to check the options.
@@ -252,7 +252,7 @@ For instance:
 You should provide the API url and image source url to make it work.
 
 
-####How to pull and run Docker Container
+#### How to pull and run Docker Container
 Install Docker to your host by following the [official installation guide](https://docs.docker.com/installation/#installation).
 
 After that, execute the following command to download Docker Image (packaged in Ubuntu 12.04 LTS):
@@ -269,9 +269,9 @@ The container has been created as an Automated Build:
 
 https://registry.hub.docker.com/u/guitarmind/tesseract-web-service/
 
-##Changelog
+## Changelog
 
-####0.0.1 - 2013-11-23
+#### 0.0.1 - 2013-11-23
 
 Features:
 
@@ -279,7 +279,7 @@ Features:
   - File-based processing
 
 
-####0.0.2 - 2013-12-08
+#### 0.0.2 - 2013-12-08
 
 Features:
 
@@ -287,14 +287,14 @@ Features:
   - Memory-based processing for "fetchUrl" API
 
 
-####0.0.3 - 2015-01-03
+#### 0.0.3 - 2015-01-03
 
 Features:
 
   - Add a Docker Container for easy installation and deployment
 
 
-####0.0.4 - 2015-09-18
+#### 0.0.4 - 2015-09-18
 
 Features:
 
@@ -302,14 +302,14 @@ Features:
   - Merged pull request [#1](https://github.com/guitarmind/tesseract-web-service/pull/1), [#2](https://github.com/guitarmind/tesseract-web-service/pull/2), [#4](https://github.com/guitarmind/tesseract-web-service/pull/4) and [#6](https://github.com/guitarmind/tesseract-web-service/pull/6) accordingly.
 
 
-####0.0.5 - 2016-02-11
+#### 0.0.5 - 2016-02-11
 
 Features:
 
   - Fixed issue [#7](https://github.com/guitarmind/tesseract-web-service/issues/7)
 
 
-##Copyright and License
+## Copyright and License
 
 Author: Mark Peng (markpeng.ntu at gmail)
 
