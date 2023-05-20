@@ -146,6 +146,7 @@ application = tornado.web.Application([
 
 def main():
     parser = optparse.OptionParser()
+    parser.add_option('-h', '--host', dest='host', help='the listening Hostname of RESTful tesseract web service. (default: all)')
     parser.add_option('-p', '--port', dest='port', help='the listening port of RESTful tesseract web service. (default: 1688)')
     parser.add_option('-l', '--lang', dest='lang', help='the targe language. (default: eng)')
     parser.add_option('-b', '--lib-path', dest='libPath', help='the absolute path of tesseract library.')
@@ -172,12 +173,16 @@ def main():
     wrapper = TesseactWrapper(lang, libpath, tessdata)
 
     port = options.port
-    if not options.port:   # if port is not given, use the default one 
+    if not options.port:   # if port is not given, use the default one
         port = 1688
 
+    host = options.host
+    if not options.host:   # if port is not given, use the default one
+        host = '0.0.0.0'
+
     http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(port)
-    print "Tesseract Web Service starts at port " + str(port) + "."
+    http_server.listen(port,host)
+    print "Tesseract Web Service starts at " + str(host) + ":" + str(port) + "."
     tornado.ioloop.IOLoop.instance().start()
  
 if __name__ == "__main__":
