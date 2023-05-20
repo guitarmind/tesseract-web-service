@@ -69,8 +69,12 @@ class FileUploadHandler(tornado.web.RequestHandler):
             result = result.replace(" ", ".")
         else:
             result = result.replace(" ", "")
-        self.write(result)
-        self.write("")
+
+        # send response json
+        response = { 'result': result }
+        self.write(response)
+
+        print response
 
     def cleanup(self, filePath):
         try:
@@ -111,6 +115,7 @@ class ImageUrlHandler(tornado.web.RequestHandler):
         else:
             # parse received json
             jsonobj = json.loads(self.request.body)
+            url = jsonobj["url"]
 
         # force resize to width=150px if the incoming image is too small for better precision
         minWidth = 150;

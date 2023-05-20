@@ -69,7 +69,7 @@ class TesseactWrapper:
 
         rc = self.tesseract.TessBaseAPIInit3(self.api, tessdata, lang)
         if (rc):
-            self.tesseract.TessBaseAPIDelete(api)
+            self.tesseract.TessBaseAPIDelete(self.api)
             print("Could not initialize tesseract.\n")
             exit(3)
 
@@ -87,6 +87,7 @@ class TesseactWrapper:
         # download image from url
         file = cStringIO.StringIO(urllib.urlopen(url).read())
         tmpImg = Image.open(file)
+        tmpImg = tmpImg.convert("RGBA")
 
         # force resize to minimal width if the incoming image is too small for better precision
         width, height = tmpImg.size
